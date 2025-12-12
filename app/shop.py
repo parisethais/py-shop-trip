@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import datetime
+import datetime
 
 
 @dataclass
@@ -18,18 +18,18 @@ class Shop:
         return total
 
     def print_receipt(self, customer_name: str, cart: dict[str, int]) -> None:
-        now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        now = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         print()
         print(f"Date: {now}")
         print(f"Thanks, {customer_name}, for your purchase!")
-        print("You have bought: ")
+        print("You have bought:")
 
         total = 0.0
         for product, qty in cart.items():
             line = qty * self.products[product]
             total += line
-            print(f"{qty} {product}s for {line: g} dollars")
+            print(f"{qty} {product}s for {line:g} dollars")
 
-        print(f"Total cost is {total: g} dollars")
+        print(f"Total cost is {total:g} dollars")
         print("See you again!")
         print()
