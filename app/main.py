@@ -19,7 +19,7 @@ def shop_trip() -> None:
 
         best = customer.choose_best_shop(shops, fuel_price)
 
-        if best is None:
+        if best is None or not customer.can_afford(best[1]):
             print(
                 f"{customer.name} doesn't have enough money to "
                 f"make a purchase in any shop"
@@ -27,14 +27,6 @@ def shop_trip() -> None:
             continue
 
         best_shop, best_cost = best
-
-        if not customer.can_afford(best_cost):
-            print(
-                f"{customer.name} doesn't have enough money to "
-                f"make a purchase in any shop"
-            )
-            continue
-
         customer.ride_to(best_shop)
         best_shop.print_receipt(customer.name, customer.product_cart)
         customer.pay(best_cost)

@@ -24,12 +24,11 @@ class Shop:
         print(f"Thanks, {customer_name}, for your purchase!")
         print("You have bought:")
 
-        total = 0.0
         for product, qty in cart.items():
             line = qty * self.products[product]
-            total += line
             print(f"{qty} {product}s for {line:g} dollars")
 
+        total = self.cart_cost(cart)
         print(f"Total cost is {total:g} dollars")
         print("See you again!")
         print()
